@@ -18,7 +18,7 @@ const Card = () => {
     return (
         <>
             {productos.map(p =>
-                <div className="relative flex w-[300px] text-left align-top flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md m-0 hover:cursor-pointer" key={p.id}>
+                <div className="relative flex w-[300px] shrink-0 text-left align-top flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md m-0 hover:cursor-pointer" key={p.id}>
                     <div className="relative -mt-6 w-full h-[400px] overflow-hidden rounded-xl text-white shadow-blue-gray-500/40 group">
                         <img src={p.front_img} alt="" className='block object-cover h-full w-full transition-all duration-600 z-10 opacity-100 group-hover:opacity-0' />
                         <img src={p.back_img} alt="" className='absolute top-0 left-0 block object-cover h-full w-full transition-all duration-600 z-0 opacity-0 group-hover:opacity-100 group-hover:scale-105' />

@@ -3,7 +3,7 @@ import React from 'react'
 export const Footer = () => {
     return (
         <>
-            <div className="text-center py-4 w-screen shadow-[0_-4px_5px_-1px_rgba(0,0,0,0.15)] bg-white z-1000">
+            <div className="text-center py-4 w-screen shadow-[0_-4px_5px_-1px_rgba(0,0,0,0.15)] bg-white z-50">
 
                 <div className="absolute left-[1%] xl:left-[5%] md:left-[5%]">
                     <img src="/ICON.png" alt="Logo" className="w-[150px]" />

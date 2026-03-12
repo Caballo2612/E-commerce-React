@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import InputSearchTwo from '../../molecule/SearchTwo';
 import '../../../stylesheets/animations.css'
 
-const Sidebar = ({ onClick, IsOpen }) => {
+const Sidebar = ({ onClick, IsOpen, toggleMenu }) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -13,8 +13,23 @@ const Sidebar = ({ onClick, IsOpen }) => {
 
     return (
         <>
-            <div className={`inset-0 z-50 bg-white shadow-2xl overflow-x-hidden transition-all duration-300 ${IsOpen.sidebar ? 'max-h-full' : 'max-h-0'}`} id='sidebar'>
-                <InputSearchTwo />
+            <div
+                className={`fixed top-0 left-0 h-screen w-72 bg-white shadow-2xl z-70 transition-transform duration-300 ease-in-out overflow-y-auto overscroll-contain ${IsOpen.sidebar ? "translate-x-0" : "-translate-x-full"}`} id="sidebar">
+                <div className='flex'>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        id='menuIcon'
+                        width="50"
+                        height="50"
+                        onClick={() => toggleMenu('sidebar')}
+                        version="1.1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className='cursor-pointer transition-all duration-300 hover:scale-110 hover:drop-shadow-lg block xl:hidden md:hidden ml-2'
+                    >
+                        <path stroke="#000" d="m7 17 9.9-9.9M7 7l9.9 9.9" />
+                    </svg>
+                    <InputSearchTwo />
+                </div>
                 <nav>
                     <ul className='flex flex-col p-4 gap-6 uppercase'>
                         <li className='relative group border-b pb-4 pl-4 border-b-black'>
@@ -33,7 +48,7 @@ const Sidebar = ({ onClick, IsOpen }) => {
                                 }
                                 fill="none"
                                 viewBox="0 0 24 24">
-                                <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" d="m9.5 7 5 5-5 5" />
+                                <path stroke="#000" d="m9.5 7 5 5-5 5" />
                             </svg>
                         </li>
 
@@ -75,7 +90,7 @@ const Sidebar = ({ onClick, IsOpen }) => {
                                         shadow-md
                                         transition-all duration-300
                                         hover:scale-[1.03] hover:shadow-red-500/50'
-                                >
+                            >
                                 🎄 Promociones Navideñas
                                 <span className='absolute -top-2 -right-2 text-xs bg-yellow-400 text-black px-2 py-0.5 rounded-full font-bold shadow-lg shadow-yellow-300/50 animate-pulse'>
                                     HOT
@@ -106,9 +121,6 @@ const Sidebar = ({ onClick, IsOpen }) => {
                         </li>
                         <li className='relative group'>
                             <Link to="/country" onClick={onClick} className='border-b duration-300 border-b-white hover:border-b hover:border-b-black hover:drop-shadow-lg'>Pais: Colombia</Link>
-                        </li>
-                        <li className='relative group'>
-                            <Link to="/login" onClick={onClick} className='border-b duration-300 border-b-white hover:border-b hover:border-b-black hover:drop-shadow-lg'>Iniciar sesión</Link>
                         </li>
                         <li className='relative group'>
                             <Link to="/terms" onClick={onClick} className='border-b duration-300 border-b-white hover:border-b hover:border-b-black hover:drop-shadow-lg'>Términos y Condiciones</Link>

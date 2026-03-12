@@ -1,6 +1,8 @@
 import http from "node:http";
 import pc from "picocolors";
 
+const PORT = process.env.VITE_PORT || 3000;
+
 const ProcessRequest = (req, res) => {
     const { method, url } = req;
 
@@ -21,6 +23,6 @@ const ProcessRequest = (req, res) => {
 
 const server = http.createServer(ProcessRequest);
 
-server.listen(1234, () => {
-    console.log(`Server running at ${pc.cyan("http://localhost:1234")}`);
+server.listen(PORT, () => {
+    console.log(`Server running at ${pc.cyan(`http://localhost:${PORT}`)}`);
 });

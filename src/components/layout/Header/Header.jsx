@@ -1,24 +1,15 @@
 import { Link } from 'react-router-dom'
 import SearchInput from '../../molecule/Search'
 import ProfileCard from '../../organisms/profileCard'
-import { RegionalSettings } from '../../organisms/RegionalSettings'
 import '../../../stylesheets/extra.css'
 
-export const Header = ({ IsOpen, toggleMenu }) => {
+export const Header = ({ IsOpen, toggleMenu, usuario }) => {
 
     return (
         <>
-            <div className='w-full bg-black'>
-                <div className=' text-white py-0.5 flex flex-row items-center gap-5 font-sans tracking-[3px] uppercase' onClick={() => toggleMenu('RegionalS')}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-linejoin="round" /><path stroke="#fff" stroke-linejoin="round" d="M12 3s-3.5 3-3.5 9 3.5 9 3.5 9m0-18s3.5 3 3.5 9-3.5 9-3.5 9m-9-9h18m-1.5-4.5h-15" /><g filter="url(#filter0_d_15_556)"><path stroke="#fff" stroke-linejoin="round" d="M19.5 16.5h-15" /></g><defs><filter id="filter0_d_15_556" width="17" height="3" x="3.5" y="16" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix" /><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" /><feOffset dy="1" /><feGaussianBlur stdDeviation=".5" /><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" /><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_15_556" /><feBlend in="SourceGraphic" in2="effect1_dropShadow_15_556" result="shape" /></filter></defs></svg>
-                    <span>Español (COP)</span>
-                </div>
-            </div>
-            {IsOpen.RegionalS && (<RegionalSettings />)}
 
             <div className='h-24 flex justify-around tracking-[3px] w-screen font-sans shadow-md bg-white z-50'>
                 <div className='flex items-center flex-row gap-6 xl:hidden md:hidden'>
-                    {!IsOpen.sidebar ?
                         <svg xmlns="http://www.w3.org/2000/svg"
                             id='menuIcon'
                             width="50"
@@ -30,20 +21,7 @@ export const Header = ({ IsOpen, toggleMenu }) => {
                             className='cursor-pointer transition-all duration-300 hover:scale-110 hover:drop-shadow-lg block xl:hidden md:hidden ml-2'
                         >
                             <path stroke="#000" d="M6 12h12M6 15.5h12m-12-7h12" />
-                        </svg> :
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            id='menuIcon'
-                            width="50"
-                            height="50"
-                            onClick={() => toggleMenu('sidebar')}
-                            version="1.1"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            className='cursor-pointer transition-all duration-300 hover:scale-110 hover:drop-shadow-lg block xl:hidden md:hidden ml-2'
-                        >
-                            <path stroke="#000" d="m7 17 9.9-9.9M7 7l9.9 9.9" />
                         </svg>
-                    }
 
                     <svg xmlns="http://www.w3.org/2000/svg"
                         width="40"
@@ -112,7 +90,7 @@ export const Header = ({ IsOpen, toggleMenu }) => {
                         >
                             <path fill="#39393a" d="M512 130.8c42.1 0 81.7 16.4 111.5 46.2s46.2 69.4 46.2 111.5-16.4 81.7-46.2 111.5-69.4 46.2-111.5 46.2-81.7-16.4-111.5-46.2-46.2-69.4-46.2-111.5 16.4-81.7 46.2-111.5 69.4-46.2 111.5-46.2m0-44c-111.4 0-201.6 90.3-201.6 201.6C310.4 399.8 400.7 490 512 490c111.4 0 201.6-90.3 201.6-201.6S623.3 86.8 512 86.8m.3 436.7L84 681.4v255.7h856V681.4zM896 893.1H128V712.6l384.3-142.4L896 712.6z" />
                         </svg>
-                        {IsOpen.setting && (<ProfileCard />)}
+                        {IsOpen.setting && (<ProfileCard usuario={usuario} />)}
                     </div>
 
                     <div className='relative group hidden xl:block md:block lg:block'>
@@ -128,7 +106,7 @@ export const Header = ({ IsOpen, toggleMenu }) => {
                             <path fill="#39393a" d="M512 130.8c42.1 0 81.7 16.4 111.5 46.2s46.2 69.4 46.2 111.5-16.4 81.7-46.2 111.5-69.4 46.2-111.5 46.2-81.7-16.4-111.5-46.2-46.2-69.4-46.2-111.5 16.4-81.7 46.2-111.5 69.4-46.2 111.5-46.2m0-44c-111.4 0-201.6 90.3-201.6 201.6C310.4 399.8 400.7 490 512 490c111.4 0 201.6-90.3 201.6-201.6S623.3 86.8 512 86.8m.3 436.7L84 681.4v255.7h856V681.4zM896 893.1H128V712.6l384.3-142.4L896 712.6z" />
                         </svg>
                         <div className='hidden group-hover:block'>
-                            <ProfileCard />
+                            <ProfileCard usuario={usuario}/>
                         </div>
                     </div>
 
