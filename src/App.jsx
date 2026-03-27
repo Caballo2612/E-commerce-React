@@ -8,15 +8,16 @@ import { Login } from './components/pages/forms'
 import { ProductPage } from './components/pages/ProductPage'
 import appFireBase from "./credentials"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { doc, getDoc, getFirestore } from "firebase/firestore"
+import Loader from './components/organisms/Loader'
 
 const Auth = getAuth(appFireBase);
 const firestore = getFirestore(appFireBase);
 
 function App() {
 
-  const [usuario, setUsuario] = useState(null)
+  const [usuario, setUsuario] = useState(undefined)
 
   async function getRol(uid) {
     const docuRef = doc(firestore, `Usuarios/${uid}`);
@@ -45,23 +46,33 @@ function App() {
     });
   }
 
-  onAuthStateChanged(Auth, (usuarioFirebase) => {
-    if (usuarioFirebase) {
-      if (!usuario) {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(Auth, (usuarioFirebase) => {
+      if (usuarioFirebase) {
         setUserWithFirebaseAndRol(usuarioFirebase);
+      } else {
+        setUsuario(null);
       }
-    } else {
-      setUsuario(null);
-    }
-  });
+    });
+
+    return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (usuario === undefined) {
+    <div className='place-items-center h-dvh  bg-linear-to-r from-[#cfdef3] to-[#e0eafc]'>
+      <Loader />
+    </div>
+  }
 
   return (
     <div className='overflow-x-hidden bg-linear-to-b from-[#ECE9E6] to-[#FFFFFF]'>
       <Routes>
         <Route element={<Layout usuario={usuario} />}>
-          <Route path='/login' element={<Login firestore={firestore} />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/' element={<Home />} />
           <Route path='colecciones' element={<Coleccion />} />
+          <Route path='/:id' element={<ProductPage />} />
           <Route path='categorias' element={<Categories />} />
           <Route path='outlet' element={<Outlet />} />
         </Route>

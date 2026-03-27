@@ -1,7 +1,8 @@
+/* eslint-disable no-undef */
 import http from "node:http";
 import pc from "picocolors";
 
-const PORT = process.env.VITE_PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 const ProcessRequest = (req, res) => {
     const { method, url } = req;
